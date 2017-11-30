@@ -31,50 +31,50 @@ public class Ex20164 {
 		do {
 			System.out.println("introducir un correo electronico");
 			correo = teclado.nextLine();
-			if (correo.indexOf("@")==-1) {
+			if (correo.indexOf("@")==-1) {//si no hay @
 				error= -1;
 			}
 			else {
-			posicion = correo.indexOf("@");
+			posicion = correo.indexOf("@");// si no divido el correo en dos
 			local = correo.substring(0, posicion);
 			dominio = correo.substring(posicion+1);
 			}
-			if (local.length() > 64) {
+			if (local.length() > 64) {//longitud local
 				error = -1 ;
 			}
-			if(dominio.length()>255) {
+			if(dominio.length()>255) {//longitu dominio
 				error = -1;
 			}
-			if (correo.length()>254) {
+			if (correo.length()>254) {//longitud total
 				error = -1;
 			}
-			for (int i = 0; i < local.length(); i++) {
+			for (int i = 0; i < local.length(); i++) {//si los caracteres de local son permitidos
 				if (permitidos.indexOf(local.charAt(i)+"") == -1) {
 				error = -1;	
 				}
 			}
-			if (local.charAt(0)=='.') {
+			if (local.charAt(0)=='.') {//que no empiece por punto
 				error = -1;
 			}
-			if (local.charAt(local.length()-1) == '.') {
+			if (local.charAt(local.length()-1) == '.') {//que no acabe en punto
 				error = -1;
 			}
-			if(local.indexOf("..") !=-1) {
+			if(local.indexOf("..") !=-1) {//que no haya dos puntos seguidos
 				error = -1;
 			}
-			for (int j = 0; j < dominio.length()-1; j++) {
+			for (int j = 0; j < dominio.length()-1; j++) {//que los caracteres del dominio sean permitidos
 				if (domperm.indexOf(dominio.charAt(j)+"") == -1) {
 					error=-1;
 				}
 			}
 			for (int i = 0; i < dominio.length(); i++) {
 				if ((dominio.substring(1, dominio.length()-1)).indexOf(".") == -1) {
-					error=-1;
+					error=-1;//que haya punto en el domino
 				}
-				else if ((dominio.substring(i+1, dominio.length())).indexOf(".") > 63) {
-				error = -1;
+				else if ((dominio.substring(i, dominio.length())).indexOf(".") > 63) {
+				error = -1;// que los caracteres entre puntos no sean mayor que 64
 				}
-				else {
+				else {//avanzar el  comienzo de la busqueda
 				i=i+dominio.indexOf(".")+1;
 				}
 			}
