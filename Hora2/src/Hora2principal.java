@@ -13,8 +13,8 @@ public class Hora2principal {
 		do {
 			System.out.println("1. Poner el Reloj en Hora");
 			System.out.println("2. Funcionamiento del Reloj");
+			System.out.println("3. Fijar alarma");	
 			System.out.println("4. Sumar horas al reloj");
-			System.out.println("3. Fijar alarma");		
 			System.out.println("5. Salir del menu");
 			menu = teclado.nextInt();
 			switch (menu) {
@@ -23,13 +23,14 @@ public class Hora2principal {
 				hora.imprimir();
 				break;
 			case 2:
-					hora.funcionReloj(hora, alarma);				
+					hora.funcionReloj(hora, alarma);
+					break;
 			case 3:
-				alarma.introducirHora(teclado, alarma);
-				hhalarma = alarma.getHoras();
-				mmalarma = alarma.getMinutos();
-				ssalarma = alarma.getSegundos();
-				break;			
+				alarma.introducirAlarma(teclado, alarma);
+				break;
+			case 4:
+				hora.suma(teclado, hora);
+				break;	
 			default:
 				System.out.println("Para todo lo demas Mastercard");
 				break;

@@ -4,9 +4,6 @@ public class Reloj {
 	private int horas;
 	private int minutos;
 	private int segundos;
-	private int hhalarma;
-	private int mmalarma;
-	private int ssalarma;
 	/**constructor*/
 	public Reloj (int hh, int mm, int ss) {
 		if (hh >= 0 && hh < 24){
@@ -79,14 +76,23 @@ public class Reloj {
 		System.out.println("introduzca segundos");
 		hora.setSegundos(teclado.nextInt());
 	}
+	/**introducir alarma por teclado*/
+	public void introducirAlarma (Scanner teclado, Reloj alarma) {
+		System.out.println("introduzca horas");
+		alarma.setHoras(teclado.nextInt());
+		System.out.println("introduzca minutos");
+		alarma.setMinutos(teclado.nextInt());
+		System.out.println("introduzca segundos");
+		alarma.setSegundos(teclado.nextInt());
+	}
 	//*funcionamiento reloj*/
 	public void funcionReloj (Reloj hora, Reloj alarma) throws InterruptedException {
 		int hh = this.horas;
 		int mm = this.minutos;
 		int ss = this.segundos;
-		int hhalarma = this.hhalarma;
-		int mmalarma = this.mmalarma;
-		int ssalarma = this.ssalarma;
+		int hhalarma = alarma.getHoras();
+		int mmalarma = alarma.getMinutos();
+		int ssalarma = alarma.getSegundos();
 		while(ss <= 60) {
 			if (ss == 60) {
 				ss = 0;
@@ -101,6 +107,9 @@ public class Reloj {
 			}
 			if (hh == hhalarma && mm == mmalarma && ss == ssalarma) {
 				System.out.println("alarma sonando");
+				System.out.println("alarma sonando");
+				System.out.println("alarma sonando");
+				ss++;
 			}
 			
 			else {
@@ -114,4 +123,11 @@ public class Reloj {
 		System.out.printf("%02d:%02d:%02d\n",this.getHoras(),this.getMinutos(),this.getSegundos());
 	}
 	/**suma horas*/
+	public void suma (Scanner teclado, Reloj hora) {
+		System.out.println("introducir horas");
+		hora.setHoras(this.horas + teclado.nextInt());
+		System.out.println("introducir minutos");
+		hora.setMinutos(this.minutos + teclado.nextInt());
+		System.out.println("introducir horas");
+		hora.setSegundos(this.segundos + teclado.nextInt());	}
 }
