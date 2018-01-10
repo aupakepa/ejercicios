@@ -8,7 +8,7 @@ public class Hora2principal {
 		int horas, minutos, segundos , menu ,hhalarma , mmalarma, ssalarma ;
 		horas  = minutos = segundos = mmalarma = ssalarma = hhalarma = 0;
 		Scanner teclado = new Scanner(System.in);
-		Reloj hora = new Reloj (segundos,minutos,segundos);
+		Reloj hora = new Reloj (horas,minutos,segundos);
 		Reloj alarma = new Reloj (hhalarma, mmalarma, ssalarma);
 		do {
 			System.out.println("1. Poner el Reloj en Hora");
@@ -27,6 +27,7 @@ public class Hora2principal {
 					break;
 			case 3:
 				alarma.introducirAlarma(teclado, alarma);
+
 				break;
 			case 4:
 				hora.suma(teclado, hora);
