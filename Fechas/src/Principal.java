@@ -81,7 +81,7 @@ public class Principal {
 				ano = Leer.pedirEntero("año");
 				int dias = Fecha.dias(dia, mes, ano);
 				System.out.println(dias);*/
-				System.out.println(Fecha.difDia(fechas[0]));
+				System.out.println(fechas[0].difDia());
 				break;
 			case 0:
 				teclado.close();

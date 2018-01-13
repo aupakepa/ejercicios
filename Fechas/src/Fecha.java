@@ -110,20 +110,17 @@ public static int dias (int dia, int mes, int ano) {
 		}
 		return dias;
 	}
-public static Integer difDia (Fecha fecha) {
-	int dias = 0;
-	int dia = fecha.getDia();
-	int mes = fecha.getMes();
-	int ano = fecha.getAno();
+public Integer difDia () {
+	Integer dias = 0;
 	int meses [] = {31,28,31,30,31,30,31,31,30,31,30,31};
-	dias = dias + dia;
-	for (int i = 0; i < mes - 2; i++) {
+	dias = dias + this.dia;
+	for (int i = 0; i < this.mes - 2; i++) {
 		dias = dias + meses[i];
-		if (esBisiesto(ano) && mes >2) {
+		if (esBisiesto(this.ano) && this.mes >2) {
 			dias++;
 		}
 	}
-	for (int i = 1; i < ano; i++) {
+	for (int i = 1; i < this.ano; i++) {
 	if	(esBisiesto(i)) {
 		dias= dias+366;
 	}
