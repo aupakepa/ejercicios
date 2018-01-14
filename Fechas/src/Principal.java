@@ -34,8 +34,10 @@ public class Principal {
 			System.out.println(" 1. Crear un objeto fecha                        ");
 			System.out.println(" 2. Comprobar que una fecha es correcta          ");
 			System.out.println(" 3. Comprobar que un año es                      ");
-			System.out.println(" 4. Visualizar Fechas                            ");
-			System.out.println(" 5. diferencia Fechas                            ");
+			System.out.println(" 4. diferencia Fechas                            ");
+			System.out.println(" 5. Suma dias a la fecha  0                      ");
+			System.out.println(" 6. Visualizar Fechas dd-mm-a                    ");
+			System.out.println(" 7. Visualizar Fechas  d de mes de año           ");
 			System.out.println(" 0. SALIR DEL PROGRAMA                           ");
 			System.out.print("               ");
 			opcion = teclado.nextInt();
@@ -68,20 +70,39 @@ public class Principal {
 					System.out.println("el año no es bisiesto");
 				}
 				break;
-			case 4:
+			case 6:
 				for (int i = 0; i < fechas.length-1; i++) {
 					if (fechas[i]!=null) {
-					Leer.mensaje(fechas[i].getCadenaFecha1());
+					fechas[i].getCadenaFecha1();
 				}
 				}
 				break;
-			case 5:
+			case 7:
+				for (int i = 0; i < fechas.length-1; i++) {
+					if (fechas[i]!=null) {
+					Leer.mensaje(fechas[i].getCadenaFecha2());
+				}
+				}
+				break;	
+			case 4:
 				/*dia = Leer.pedirEntero("dia");
 				mes = Leer.pedirEntero("mes"); 
 				ano = Leer.pedirEntero("año");
 				int dias = Fecha.dias(dia, mes, ano);
 				System.out.println(dias);*/
-				System.out.println(fechas[0].difDia());
+				Integer cont1;
+				Integer cont2;
+				do {
+				cont1 = Leer.pedirEntero("introduce una numero de refer. de fechas");
+				cont2 = Leer.pedirEntero("introduce una numero de refer. de fechas");
+					
+				} while (cont1 == null || cont2 == null);
+				
+				System.out.println(fechas[cont1].diferenciaDias(fechas[cont2]));
+				break;
+			case 5:
+				int dias = Leer.pedirEntero("Introduzca los dias a sumar");
+				fechas[0].sumaDias(dias).getCadenaFecha1();
 				break;
 			case 0:
 				teclado.close();

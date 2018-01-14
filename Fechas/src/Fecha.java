@@ -3,7 +3,7 @@ public class Fecha {
 	private Integer dia;
 	private Integer mes;
 	private Integer ano;
-	static Integer cont = 1 ;
+	static Integer cont = 0 ;
 
 	public static Integer getCont() {
 		return cont;
@@ -48,17 +48,18 @@ public class Fecha {
 			meses[1] = 28;
 		}
 		int error = 0;
-		if ((dia <= meses[mes-1]) && dia > 0) {
-		}
-		else {
-			System.out.println("Esta fecha no es legal");
+		if (mes > 12 || mes < 0) {
+			System.out.println("El mes debe estar entre 1 y 12");
 			error = -1;
 		}
-		if (mes > 0 && mes <= 12) {
-		}	
 		else {
-			System.out.println("el mes debe ser entre 1 y 12");
-			error = -1;
+			if ((dia <= meses[mes-1]) && dia > 0) {
+			}
+			else {
+				System.out.println("Esta fecha no es correcta");
+				error = -1;
+			}
+
 		}
 		if (ano < 10000) {
 		}
@@ -83,53 +84,70 @@ public class Fecha {
 		}
 		return correcto;
 	}
-	public String getCadenaFecha1 (){
-		return "Fecha "+dia+"-"+mes+"-"+ano;
+	public void getCadenaFecha1 (){
+		System.out.printf("%02d-%02d-%04d\n\n",this.dia,this.mes,this.ano);
 	}
 	public String getCadenaFecha2 (){
 		String meses [] = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
 		return "Fecha "+this.dia+" de "+ meses[this.mes-1]+" de "+this.ano;
 	}
-public static int dias (int dia, int mes, int ano) {
+	public int diferenciaDias (Fecha fecha2) {
 		int dias = 0;
-		int meses [] = {31,28,31,30,31,30,31,31,30,31,30,31};
-		dias = dias + dia;
-		for (int i = 0; i < mes - 2; i++) {
+		Fecha fecha1 = new Fecha (this.dia,this.mes,this.ano);
+		dias = fecha2.difDia() - fecha1.difDia();
+		return dias;
+	}
+	public Integer difDia () {
+		Integer dias = 0;
+		Integer meses [] = {31,28,31,30,31,30,31,31,30,31,30,31};
+		dias = dias + this.dia;
+		for (int i = 0; i < this.mes - 1; i++) {
 			dias = dias + meses[i];
-			if (esBisiesto(ano) && mes>2) {
+			if (esBisiesto(this.ano) && this.mes >2) {
 				dias++;
 			}
 		}
-		for (int i = 1; i < ano; i++) {
-		if	(esBisiesto(i)) {
-			dias= dias+366;
-		}
-		else {
-			dias = dias + 365;
-		}
+		for (int i = 1; i < this.ano; i++) {
+			if	(esBisiesto(i)) {
+				dias= dias+366;
+			}
+			else {
+				dias = dias + 365;
+			}
 		}
 		return dias;
 	}
-public Integer difDia () {
-	Integer dias = 0;
-	int meses [] = {31,28,31,30,31,30,31,31,30,31,30,31};
-	dias = dias + this.dia;
-	for (int i = 0; i < this.mes - 2; i++) {
-		dias = dias + meses[i];
-		if (esBisiesto(this.ano) && this.mes >2) {
-			dias++;
+	public Fecha sumaDias(int num) {
+		int dia = 0;
+		int mes = 1;
+		int ano = 1;
+		int meses [] = {31,28,31,30,31,30,31,31,30,31,30,31};
+		Fecha fecha = new Fecha(this.dia, this.mes, this.ano);
+		int dias = fecha.difDia() + num;
+		while (dias >= 365) {
+			if (esBisiesto(ano)) {
+				dias = dias -366;
+				ano++;
+			}
+			else {
+				dias = dias -365;
+				ano++;
+			}
+		}	
+		if (esBisiesto(ano)) {
+			meses[1] = 29;
 		}
+		else {
+			meses[1] = 28;
+		}
+		for (int i = 0; dias > meses[i]; i++) {
+			dias = dias - meses[i];
+			mes++;
+		}
+		dia = dias;
+		fecha.setFecha(dia, mes, ano);
+		return fecha;
 	}
-	for (int i = 1; i < this.ano; i++) {
-	if	(esBisiesto(i)) {
-		dias= dias+366;
-	}
-	else {
-		dias = dias + 365;
-	}
-	}
-	return dias;
-}
 }
 
 
